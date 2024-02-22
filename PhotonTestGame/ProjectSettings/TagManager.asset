@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - HealBox
+  - Ground
+  - Enemy
+  - Bullet
+  - Wall
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Player
+  - Groud
+  - Enemy
+  - Enviorment
+  - CinemachineRange
+  - Wall
+  - PlayerHitBox
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 348695647
+    locked: 0
+  - name: Ground
+    uniqueID: 3501366271
+    locked: 0
+  - name: Player
+    uniqueID: 375641711
+    locked: 0
+  - name: UI
+    uniqueID: 4277955197
+    locked: 0
