@@ -18,4 +18,14 @@ public class StartSceneManager : MonoBehaviourPunCallbacks
         print("Connected!");
         SceneManager.LoadScene("LobbyScene");
     }
+
+    public void OnClickSetting()
+    {
+        GameObject.Find("SettingPanelCanvas").GetComponent<SettingPanelController>().SetPanelState(true);
+    }
+
+    public void OnClickExit()
+    {
+        Application.Quit();
+    }
 }

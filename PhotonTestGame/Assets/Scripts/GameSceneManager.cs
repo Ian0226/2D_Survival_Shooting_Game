@@ -20,6 +20,25 @@ public class GameSceneManager : MonoBehaviour
     private float nextTimeToIns = 0f;
 
     private bool gameIsStart = false;
+
+    private bool gameIsLose = false;
+    public bool GameIsLose
+    {
+        get { return gameIsLose; }
+        set { gameIsLose = value; }
+    }
+
+    private bool gameIsWin = false;
+    public bool GameIsWin
+    {
+        get { return gameIsWin; }
+        set { gameIsWin = value; }
+    }
+
+    public List<Transform> GetPlayerList()
+    {
+        return playerList;
+    }
     void Start()
     {
         if(PhotonNetwork.CurrentRoom == null)
@@ -49,12 +68,11 @@ public class GameSceneManager : MonoBehaviour
                 {
                     GameObject currentInitEnemy = EnemyInstantiateSysForPhoton.EnemyInitSystemForPhoton.
                         StartInstantiateSystemOneTime(testEnemy, TransformListToVectorList.ListConvert(enemyInsPos));
-                    currentInitEnemy.GetComponent<EnemyController>().SetCurrentTarget(playerList);
+                    //currentInitEnemy.GetComponent<EnemyController>().SetCurrentTarget(playerList);
                     nextTimeToIns = Time.timeSinceLevelLoad + insEnemyRate;
                 }
             }
-            
-        } 
+        }
     }
 
     IEnumerator DelayInit(float sec)

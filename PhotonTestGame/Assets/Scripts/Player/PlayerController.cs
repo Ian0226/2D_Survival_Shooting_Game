@@ -39,7 +39,7 @@ namespace mainGame
         private Transform _transform;
         private PhotonView _pv;
         private Rigidbody2D _rb;
-        private GameObject _mainCameraObj;
+        //private GameObject _mainCameraObj;
         private CinemachineVirtualCamera _vCamera;
         private Animator _anim;
         [Header("This will place the initial weapon")]
@@ -53,7 +53,7 @@ namespace mainGame
             _transform = this.transform;
             _pv = this.gameObject.GetComponent<PhotonView>();
             _rb = this.gameObject.GetComponent<Rigidbody2D>();
-            _mainCameraObj = GameObject.Find("Main Camera");
+            //_mainCameraObj = GameObject.Find("Main Camera");
             _vCamera = GameObject.Find("CM vcam1").GetComponent<CinemachineVirtualCamera>();
             _anim = CharacterContainer.GetComponentInChildren<Animator>();
 
@@ -197,6 +197,7 @@ namespace mainGame
                 PhotonNetwork.LocalPlayer.SetCustomProperties(table);*/
                 if (hp <= 0)
                 {
+                    GameObject.Find("GameSceneManager").GetComponent<GameSceneManager>().GetPlayerList().Remove(this.transform);
                     PhotonNetwork.Destroy(this.gameObject);
                 }
             }

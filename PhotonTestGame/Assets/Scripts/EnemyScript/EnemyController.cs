@@ -31,6 +31,7 @@ public class EnemyController : MonoBehaviourPunCallbacks
     private PhotonView _pv;
     private Animator _anim;
 
+    [Header(" ")]
     [SerializeField]
     private Transform _followTarget;
     private Transform _currentAttackTarget;
@@ -39,9 +40,11 @@ public class EnemyController : MonoBehaviourPunCallbacks
 
     private EnemyFollowPlayerSystem enemyFollowPlayerSystem;
 
+    private List<Transform> playerList;
+
     private int layerMaskPlayer;
 
-    private float nextTimeToAttack;
+    private float nextTimeToAttack = 0.0f;
 
     //For test
     [SerializeField]
@@ -70,6 +73,11 @@ public class EnemyController : MonoBehaviourPunCallbacks
         enemyHpMax = enemyHp;
 
         hpUI = _hpImage.transform.parent.gameObject;
+
+        playerList = GameObject.Find("GameSceneManager").GetComponent<GameSceneManager>().GetPlayerList();
+        SetCurrentTarget(playerList);
+
+        SetUIState(false);
     }
 
     private void Update()
@@ -78,6 +86,9 @@ public class EnemyController : MonoBehaviourPunCallbacks
             enemyCurrentAction();
 
         EnemyAttackHandler();
+
+        if (_followTarget == null && PhotonNetwork.LocalPlayer.IsMasterClient)
+            SetCurrentTarget(playerList);
 
         if (_pv.IsMine)
         {
@@ -91,13 +102,16 @@ public class EnemyController : MonoBehaviourPunCallbacks
 
     public void SetCurrentTarget(List<Transform> players)
     {
-        int targetIndex = UnityEngine.Random.Range(0, players.Count);
-        _followTarget = players[targetIndex];
+        if (players.Count > 0)
+        {
+            int targetIndex = UnityEngine.Random.Range(0, players.Count);
+            _followTarget = players[targetIndex];
+        }
     }
 
     private void EnemyFollowPlayer()
     {
-        if (_currentAttackTarget == null && PhotonNetwork.LocalPlayer.IsMasterClient)
+        if (_currentAttackTarget == null && _followTarget != null && PhotonNetwork.LocalPlayer.IsMasterClient)
             enemyFollowPlayerSystem.MoveToTarget(_followTarget);
 
         if (EnemyHitPlayerHandler())
@@ -133,11 +147,13 @@ public class EnemyController : MonoBehaviourPunCallbacks
     private void EnemyAttackHandler()
     {
         SetAttackAnimeState(true);
-        
+
         if(Time.timeSinceLevelLoad >= nextTimeToAttack)
         {
             if (_currentAttackTarget != null)
+            {
                 _currentAttackTarget.gameObject.GetComponent<mainGame.PlayerController>().TakeDamage(this.damage);
+            }
             nextTimeToAttack = Time.timeSinceLevelLoad + attackRate;
         }
 
