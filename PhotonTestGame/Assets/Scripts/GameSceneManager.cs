@@ -9,6 +9,9 @@ public class GameSceneManager : MonoBehaviour
 {
     public GameObject testEnemy;
 
+    [Header("UI Properties")]
+    public GameObject LosePanel;
+
     [SerializeField]
     private List<Transform> playerList = new List<Transform>();
 
@@ -59,10 +62,10 @@ public class GameSceneManager : MonoBehaviour
 
     void Update()
     {
-        //Instantiate Enemy
-        if (PhotonNetwork.LocalPlayer.IsMasterClient)
+        if (gameIsStart)
         {
-            if (gameIsStart)
+            //Instantiate Enemy
+            if (PhotonNetwork.LocalPlayer.IsMasterClient)
             {
                 if (Time.timeSinceLevelLoad >= nextTimeToIns)
                 {
@@ -72,7 +75,23 @@ public class GameSceneManager : MonoBehaviour
                     nextTimeToIns = Time.timeSinceLevelLoad + insEnemyRate;
                 }
             }
+            GameWinHandler();
         }
+        playerList.RemoveAll(Transform => Transform == null);
+    }
+
+    private void GameWinHandler()
+    {
+        if(playerList.Count == 0)
+        {
+            gameIsLose = true;
+            LosePanel.SetActive(true);
+        }
+    }
+
+    public void ReturnToRoom()
+    {
+        SceneManager.LoadScene("RoomScene");
     }
 
     IEnumerator DelayInit(float sec)

@@ -197,7 +197,7 @@ namespace mainGame
                 PhotonNetwork.LocalPlayer.SetCustomProperties(table);*/
                 if (hp <= 0)
                 {
-                    GameObject.Find("GameSceneManager").GetComponent<GameSceneManager>().GetPlayerList().Remove(this.transform);
+                    //GameObject.Find("GameSceneManager").GetComponent<GameSceneManager>().GetPlayerList().Remove(this.transform);
                     PhotonNetwork.Destroy(this.gameObject);
                 }
             }

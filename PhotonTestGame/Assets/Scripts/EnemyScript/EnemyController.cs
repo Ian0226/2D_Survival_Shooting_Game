@@ -148,13 +148,13 @@ public class EnemyController : MonoBehaviourPunCallbacks
     {
         SetAttackAnimeState(true);
 
-        if(Time.timeSinceLevelLoad >= nextTimeToAttack)
+        if (_currentAttackTarget != null)
         {
-            if (_currentAttackTarget != null)
+            if (Time.timeSinceLevelLoad >= nextTimeToAttack)
             {
                 _currentAttackTarget.gameObject.GetComponent<mainGame.PlayerController>().TakeDamage(this.damage);
+                nextTimeToAttack = Time.timeSinceLevelLoad + attackRate;
             }
-            nextTimeToAttack = Time.timeSinceLevelLoad + attackRate;
         }
 
         if (!EnemyHitPlayerHandler())
