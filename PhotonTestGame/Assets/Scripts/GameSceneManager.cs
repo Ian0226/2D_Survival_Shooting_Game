@@ -44,6 +44,7 @@ public class GameSceneManager : MonoBehaviour
     }
     void Start()
     {
+        Cursor.visible = false;
         if(PhotonNetwork.CurrentRoom == null)
         {
             SceneManager.LoadScene("LobbyScene");
@@ -86,6 +87,7 @@ public class GameSceneManager : MonoBehaviour
         {
             gameIsLose = true;
             LosePanel.SetActive(true);
+            Cursor.visible = true;
         }
     }
 

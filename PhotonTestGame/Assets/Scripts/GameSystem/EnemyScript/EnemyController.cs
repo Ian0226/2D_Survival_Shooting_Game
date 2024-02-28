@@ -152,7 +152,7 @@ public class EnemyController : MonoBehaviourPunCallbacks
         {
             if (Time.timeSinceLevelLoad >= nextTimeToAttack)
             {
-                _currentAttackTarget.gameObject.GetComponent<mainGame.PlayerController>().TakeDamage(this.damage);
+                _currentAttackTarget.gameObject.GetComponent<PlayerController>().TakeDamage(this.damage);
                 nextTimeToAttack = Time.timeSinceLevelLoad + attackRate;
             }
         }
