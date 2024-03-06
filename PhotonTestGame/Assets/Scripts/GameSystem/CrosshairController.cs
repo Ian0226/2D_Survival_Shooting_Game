@@ -18,6 +18,7 @@ public class CrosshairController : MonoBehaviour
     private void CrosshairHandler()
     {
         Vector3 crosshairPos;
+        //UGUI screen point to world point,canvas needs to be world space.
         RectTransformUtility.ScreenPointToWorldPointInRectangle(_crosshairRect, Input.mousePosition, _mainCamera, out crosshairPos);
         _crosshairRect.position = crosshairPos;
     }
