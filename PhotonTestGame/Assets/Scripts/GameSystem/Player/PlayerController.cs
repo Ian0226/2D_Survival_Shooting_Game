@@ -116,13 +116,6 @@ public class PlayerController : MonoBehaviourPunCallbacks
             _anim.SetBool("isJump", true);
             _anim.SetBool("isRun", false);
         }
-        /*if (Input.GetKeyDown(KeyCode.Q))
-        {
-            Vector3 offset = new Vector3(0.1f, 0, 0);
-            GameObject bulletObj = PhotonNetwork.Instantiate("PhotonBullet", _transform.position + offset, Quaternion.identity);
-            Rigidbody2D brb = bulletObj.GetComponent<Rigidbody2D>();
-            brb.AddForce(new Vector2(bulletPower, 0));
-        }*/
     }
 
     void PlayerLookDirectControl()
@@ -136,7 +129,6 @@ public class PlayerController : MonoBehaviourPunCallbacks
         Vector2 weaponLookDirection = (mousePos - (Vector2)WeaponContainer.transform.position).normalized;
         WeaponContainer.transform.right = weaponLookDirection;
 
-        //«Ý¬ã¨s
         //float angle = Mathf.Atan2(weaponLookDirection.y, weaponLookDirection.x) * Mathf.Rad2Deg;
 
         if (mousePos.x < this.transform.position.x)
@@ -174,7 +166,11 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
     private void PlayerJumpHandler()
     {
-        if(_rb.velocity.y > 0)
+        if (Mathf.Abs(_rb.velocity.y) < 0.0001f)
+        {
+            _rb.velocity = new Vector2(_rb.velocity.x, 0f); //Set very small y value to 0,fix the velocity.y bug.
+        }
+        if (_rb.velocity.y > 0)
         {
             BoxCollider.enabled = false;
         }
@@ -206,21 +202,6 @@ public class PlayerController : MonoBehaviourPunCallbacks
     {
         if (_pv != null && _pv.IsMine)
         {
-            /*if (other.gameObject.tag == "Bullet")
-            {
-                Bullet bullet = other.gameObject.GetComponent<Bullet>();
-                if (!bullet.pv.IsMine)
-                {
-                    HashTable table = new HashTable();
-                    hp -= 10;
-                    table.Add("hp", hp);
-                    PhotonNetwork.LocalPlayer.SetCustomProperties(table);
-                    if (hp <= 0)
-                    {
-                        PhotonNetwork.Destroy(this.gameObject);
-                    }
-                }
-            }*/
             if (other.gameObject.tag == "Ground")
             {
                 isGround = true;
