@@ -13,5 +13,13 @@ public class ShootingGame2DSystems
     }
     private ShootingGame2DSystems() { }
 
-    
+    public void Initialize()
+    {
+
+    }
+
+    public void Update()
+    {
+
+    }
 }

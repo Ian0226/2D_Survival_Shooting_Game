@@ -11,7 +11,9 @@ public class GameSceneManager : MonoBehaviour
 
     [Header("UI Properties")]
     public GameObject LosePanel;
+    public GameObject PlayTimeDisplay;
 
+    [Header(" ")]
     [SerializeField]
     private List<Transform> playerList = new List<Transform>();
 
@@ -42,6 +44,12 @@ public class GameSceneManager : MonoBehaviour
     {
         return playerList;
     }
+
+    private void Awake()
+    {
+        //Call game system initialize.
+        ShootingGame2DSystems.Instance.Initialize();
+    }
     void Start()
     {
         Cursor.visible = false;
@@ -65,6 +73,8 @@ public class GameSceneManager : MonoBehaviour
     {
         if (gameIsStart)
         {
+            //Call game system update.
+            ShootingGame2DSystems.Instance.Update();
             //Instantiate Enemy
             if (PhotonNetwork.LocalPlayer.IsMasterClient)
             {
