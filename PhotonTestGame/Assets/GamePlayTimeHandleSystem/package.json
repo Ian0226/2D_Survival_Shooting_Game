@@ -1,0 +1,11 @@
+{
+    "name": "com.unity.gameplaytimehandler",
+    "version": "1.0.0",
+    "displayName": "Game Play Time Handler",
+    "description": "Handle time in game playing.",
+    "unity": "2021.3",
+    "author": {
+      "name": "unknow"
+    },
+    "dependencies": {}
+  }
