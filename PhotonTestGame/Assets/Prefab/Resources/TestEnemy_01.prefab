@@ -271,6 +271,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 1170409309863713823}
+  - {fileID: 3756213007030813510}
   - {fileID: 6381694672420057236}
   sceneViewId: 0
   InstantiationId: 0
@@ -1040,6 +1041,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6101947679310644484, guid: 7939439140932984598f7c5f783cdb04,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.27634388
+      objectReference: {fileID: 0}
+    - target: {fileID: 6101947679310644484, guid: 7939439140932984598f7c5f783cdb04,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.30928287
+      objectReference: {fileID: 0}
+    - target: {fileID: 6101947679310644484, guid: 7939439140932984598f7c5f783cdb04,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.8490566
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7939439140932984598f7c5f783cdb04, type: 3}

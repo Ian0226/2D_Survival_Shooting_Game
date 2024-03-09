@@ -10,14 +10,20 @@ namespace GamePlayTimeHandler
         //public TMPro.TextMeshProUGUI TimeText;
         public UnityEngine.UI.Text TimeText;
 
+        private static bool GameStop = false;
+
         private int second, minute, hour;
 
+        public static void SetGameStopState(bool state)
+        {
+            GameStop = state;
+        }
         /// <summary>
         /// Call this method in update to start display game time.
         /// </summary>
         public void CountGameTimeHandler()
         {
-            if (!TimeText)
+            if (!TimeText && GameStop)
                 return;
 
             second = (int)Time.timeSinceLevelLoad;

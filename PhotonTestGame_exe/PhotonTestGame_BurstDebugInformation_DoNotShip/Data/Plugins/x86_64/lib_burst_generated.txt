@@ -204,6 +204,7 @@ Library: lib_burst_generated
 --root-assembly=E:\2DSurvivalShootingGameRepo\2D_Survival_Shooting_Game\PhotonTestGame\Temp\StagingArea\Data\Managed\Unity.Services.Core.dll
 --root-assembly=E:\2DSurvivalShootingGameRepo\2D_Survival_Shooting_Game\PhotonTestGame\Temp\StagingArea\Data\Managed\Unity.Services.Core.Networking.dll
 --root-assembly=E:\2DSurvivalShootingGameRepo\2D_Survival_Shooting_Game\PhotonTestGame\Temp\StagingArea\Data\Managed\Unity.Services.Core.Registration.dll
+--root-assembly=E:\2DSurvivalShootingGameRepo\2D_Survival_Shooting_Game\PhotonTestGame\Temp\StagingArea\Data\Managed\GamePlayTimeHandler.dll
 --root-assembly=E:\2DSurvivalShootingGameRepo\2D_Survival_Shooting_Game\PhotonTestGame\Temp\StagingArea\Data\Managed\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll
 --root-assembly=E:\2DSurvivalShootingGameRepo\2D_Survival_Shooting_Game\PhotonTestGame\Temp\StagingArea\Data\Managed\Unity.RenderPipelines.Core.ShaderLibrary.dll
 --root-assembly=E:\2DSurvivalShootingGameRepo\2D_Survival_Shooting_Game\PhotonTestGame\Temp\StagingArea\Data\Managed\Unity.InternalAPIEngineBridge.001.dll
@@ -429,6 +430,7 @@ Library: lib_burst_generated
 --root-assembly=E:\2DSurvivalShootingGameRepo\2D_Survival_Shooting_Game\PhotonTestGame\Temp\StagingArea\Data\Managed\Unity.Services.Core.dll
 --root-assembly=E:\2DSurvivalShootingGameRepo\2D_Survival_Shooting_Game\PhotonTestGame\Temp\StagingArea\Data\Managed\Unity.Services.Core.Networking.dll
 --root-assembly=E:\2DSurvivalShootingGameRepo\2D_Survival_Shooting_Game\PhotonTestGame\Temp\StagingArea\Data\Managed\Unity.Services.Core.Registration.dll
+--root-assembly=E:\2DSurvivalShootingGameRepo\2D_Survival_Shooting_Game\PhotonTestGame\Temp\StagingArea\Data\Managed\GamePlayTimeHandler.dll
 --root-assembly=E:\2DSurvivalShootingGameRepo\2D_Survival_Shooting_Game\PhotonTestGame\Temp\StagingArea\Data\Managed\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll
 --root-assembly=E:\2DSurvivalShootingGameRepo\2D_Survival_Shooting_Game\PhotonTestGame\Temp\StagingArea\Data\Managed\Unity.RenderPipelines.Core.ShaderLibrary.dll
 --root-assembly=E:\2DSurvivalShootingGameRepo\2D_Survival_Shooting_Game\PhotonTestGame\Temp\StagingArea\Data\Managed\Unity.InternalAPIEngineBridge.001.dll

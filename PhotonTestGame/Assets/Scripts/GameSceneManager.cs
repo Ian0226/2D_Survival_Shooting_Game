@@ -71,46 +71,28 @@ public class GameSceneManager : MonoBehaviour
 
     void Update()
     {
-        if (gameIsStart)
-        {
-            //Call game system update.
-            ShootingGame2DSystems.Instance.Update();
-            //Instantiate Enemy
-            if (PhotonNetwork.LocalPlayer.IsMasterClient)
-            {
-                if (Time.timeSinceLevelLoad >= nextTimeToIns)
-                {
-                    GameObject currentInitEnemy = EnemyInstantiateSysForPhoton.EnemyInitSystemForPhoton.
-                        StartInstantiateSystemOneTime(testEnemy, TransformListToVectorList.ListConvert(enemyInsPos));
-                    //currentInitEnemy.GetComponent<EnemyController>().SetCurrentTarget(playerList);
-                    nextTimeToIns = Time.timeSinceLevelLoad + insEnemyRate;
-                }
-            }
-            GameWinHandler();
-        }
+        if (!gameIsStart)
+            return;
+
+        //Call game system update.
+        ShootingGame2DSystems.Instance.Update();
+        //Instantiate Enemy
+        if (!PhotonNetwork.LocalPlayer.IsMasterClient)
+            return;
+
+        InstantiateEnemyHandler();
+
+        GameWinLoseHandler();
+    }
+
+    private void LateUpdate()
+    {
         playerList.RemoveAll(Transform => Transform == null);
     }
 
-    private void GameWinHandler()
-    {
-        if(playerList.Count == 0)
-        {
-            gameIsLose = true;
-            LosePanel.SetActive(true);
-            Cursor.visible = true;
-        }
-    }
-
-    public void ReturnToRoom()
-    {
-        SceneManager.LoadScene("RoomScene");
-    }
-
-    IEnumerator DelayInit(float sec)
-    {
-        yield return new WaitForSeconds(sec);
-        InitGame();
-    }
+    /// <summary>
+    /// Initialize game.
+    /// </summary>
     public void InitGame()
     {
         float spawnPointX = Random.Range(-3, 3);
@@ -126,6 +108,48 @@ public class GameSceneManager : MonoBehaviour
         StartCoroutine(UpdatePlayerListAfterDelay());
     }
 
+    /// <summary>
+    /// Master client must call this method to instantiate enemy in scene.
+    /// </summary>
+    private void InstantiateEnemyHandler()
+    {
+        if (Time.timeSinceLevelLoad >= nextTimeToIns)
+        {
+            GameObject currentInitEnemy = EnemyInstantiateSysForPhoton.EnemyInitSystemForPhoton.
+                StartInstantiateSystemOneTime(testEnemy, TransformListToVectorList.ListConvert(enemyInsPos));
+            //currentInitEnemy.GetComponent<EnemyController>().SetCurrentTarget(playerList);
+            nextTimeToIns = Time.timeSinceLevelLoad + insEnemyRate;
+        }
+    }
+
+    /// <summary>
+    /// Handle game state if game is win or lose.
+    /// </summary>
+    private void GameWinLoseHandler()
+    {
+        if(playerList.Count == 0)
+        {
+            gameIsLose = true;
+            LosePanel.SetActive(true);
+            Cursor.visible = true;
+            GamePlayTimeHandler.GameTimeHandleSystem.SetGameStopState(true);
+        }
+    }
+
+    /// <summary>
+    /// ReturnRoomButton will call this method.
+    /// </summary>
+    public void ReturnToRoom()
+    {
+        SceneManager.LoadScene("RoomScene");
+    }
+
+    IEnumerator DelayInit(float sec)
+    {
+        yield return new WaitForSeconds(sec);
+        InitGame();
+    }
+    
     IEnumerator UpdatePlayerListAfterDelay()
     {
         yield return new WaitForSeconds(1);
