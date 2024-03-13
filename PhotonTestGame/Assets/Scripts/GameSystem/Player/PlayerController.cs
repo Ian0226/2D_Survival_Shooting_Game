@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
         
     private bool isGround;
 
-    void Start()
+    private void Awake()
     {
         _transform = this.transform;
         _pv = this.gameObject.GetComponent<PhotonView>();
@@ -57,7 +57,9 @@ public class PlayerController : MonoBehaviourPunCallbacks
         _anim = CharacterContainer.GetComponentInChildren<Animator>();
 
         InitPlayerProperties();
-
+    }
+    void Start()
+    {
         if (!_pv.IsMine)
         {
             Destroy(_rb);
@@ -82,7 +84,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
     }
     private void InitPlayerProperties()
     {
-        //hp = 100;
+        hp = 100;
     }
     void PlayerInputControl()
     {
@@ -187,9 +189,9 @@ public class PlayerController : MonoBehaviourPunCallbacks
         {
             hp -= damage;
             UpdateHpBar();
-            /*HashTable table = new HashTable();
+            HashTable table = new HashTable();
             table.Add("hp", hp);
-            PhotonNetwork.LocalPlayer.SetCustomProperties(table);*/
+            PhotonNetwork.LocalPlayer.SetCustomProperties(table);
             if (hp <= 0)
             {
                 //GameObject.Find("GameSceneManager").GetComponent<GameSceneManager>().GetPlayerList().Remove(this.transform);
@@ -227,15 +229,16 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
     public override void OnPlayerPropertiesUpdate(Player targetPlayer, HashTable changedProps)
     {
-        /*if (targetPlayer == _pv.Owner)
+        if (targetPlayer == _pv.Owner)
         {
             if (changedProps.ContainsKey("hp"))
             {
                 hp = (float)changedProps["hp"];
+                UpdateHpBar();
             }
             //print(targetPlayer.NickName + ":" + hp.ToString());
-            UpdateHpBar();
-        }*/
+            
+        }
     }
 }
 
