@@ -19,6 +19,14 @@ namespace EnemyInstantiateSysForPhoton
         {
             _instance = this;
         }
+
+        /// <summary>
+        /// Instantiate object in one position.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="position"></param>
+        /// <param name="time"></param>
+        /// <returns></returns>
         public static GameObject StartInstantiateSystem(GameObject obj, Vector3 position, float time)
         {
             if (_instance != null)
@@ -28,6 +36,15 @@ namespace EnemyInstantiateSysForPhoton
             return _instance._instantiatedObj;
         }
 
+        /// <summary>
+        /// Instantiate object with instantiate mode,there have two mode,
+        /// one is sequance instantiate enemy by insantiate positions,one is random instantiate by instantiate position.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="positions"></param>
+        /// <param name="time"></param>
+        /// <param name="mode"></param>
+        /// <returns></returns>
         public static GameObject StartInstantiateSystem(GameObject obj,List<Vector3> positions,float time,InstantiateMode mode)
         {
             if (_instance != null)
@@ -37,6 +54,12 @@ namespace EnemyInstantiateSysForPhoton
             return _instance._instantiatedObj;
         }
 
+        /// <summary>
+        /// Only instantiate object one time.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="positions"></param>
+        /// <returns></returns>
         public static GameObject StartInstantiateSystemOneTime(GameObject obj, List<Vector3> positions)
         {
             int randInt = Random.Range(0, positions.Count);

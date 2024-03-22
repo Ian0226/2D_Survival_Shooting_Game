@@ -125,13 +125,11 @@ public class PlayerController : MonoBehaviourPunCallbacks
         Vector2 mousePos = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
 
         // HeadObj
-        Vector2 headLookDirection = (mousePos - (Vector2)HeadObj.transform.position).normalized;
+        Vector2 headLookDirection = mousePos - (Vector2)HeadObj.transform.position;
         HeadObj.transform.right = headLookDirection;
         // WeaponObj
-        Vector2 weaponLookDirection = (mousePos - (Vector2)WeaponContainer.transform.position).normalized;
+        Vector2 weaponLookDirection = mousePos - (Vector2)WeaponContainer.transform.position;
         WeaponContainer.transform.right = weaponLookDirection;
-
-        //float angle = Mathf.Atan2(weaponLookDirection.y, weaponLookDirection.x) * Mathf.Rad2Deg;
 
         if (mousePos.x < this.transform.position.x)
         {
