@@ -1,0 +1,11 @@
+{
+    "name": "unity.objectInstantiateSystem",
+    "version": "1.0.0",
+    "displayName": "Instantiate object.",
+    "description": "Instantiate object easily.",
+    "unity": "2021.3",
+    "author": {
+      "name": "unknow"
+    },
+    "dependencies": {}
+  }
